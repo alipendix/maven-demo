@@ -41,7 +41,17 @@ jobs:
       - name: Build with Maven
         run: mvn package -B
 
-      # Paso 6: Subir los artefactos generados (si es necesario)
+      # Paso 6: Verificar si el artefacto existe antes de subirlo
+      - name: Check if artifact exists
+        run: |
+          if [ -f "target/*.jar" ]; then
+            echo "Artifact found!";
+          else
+            echo "Artifact not found!";
+            exit 1;  # Si no se encuentra el artefacto, fallamos el flujo
+          fi
+
+      # Paso 7: Subir los artefactos generados (si el artefacto existe)
       - name: Upload Maven artifacts
         uses: actions/upload-artifact@v3
         with:
