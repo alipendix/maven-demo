@@ -40,8 +40,8 @@ jobs:
       - name: Run unit tests
         run: mvn test -B
 
-      - name: Upload test results
-        uses: actions/upload-artifact@v3  # Cambié a la versión v2 de upload-artifact
+      - name: Upload test results (v2)
+        uses: actions/upload-artifact@v2.3.0  # Probar con versión específica
         with:
           name: test-results
           path: target/surefire-reports/TEST-*.xml
