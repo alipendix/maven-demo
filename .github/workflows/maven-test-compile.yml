@@ -35,13 +35,13 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'temurin' 
-          
+          distribution: 'temurin'  # Cambié de adoptopenjdk a temurin
+
       - name: Run unit tests
         run: mvn test -B
 
       - name: Upload test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2  # Cambié a la versión v2 de upload-artifact
         with:
           name: test-results
           path: target/surefire-reports/TEST-*.xml
