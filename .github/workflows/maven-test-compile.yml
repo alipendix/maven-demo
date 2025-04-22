@@ -41,7 +41,7 @@ jobs:
         run: mvn test -B
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2  # Cambié a la versión v2 de upload-artifact
+        uses: actions/upload-artifact@v3  # Cambié a la versión v2 de upload-artifact
         with:
           name: test-results
           path: target/surefire-reports/TEST-*.xml
