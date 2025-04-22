@@ -1,59 +1,29 @@
-name: Java CI with Maven
+name: Maven Build and Test
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Configura el runner para Ubuntu
+
+    runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el repositorio
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Paso 2: Configurar Java 17
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'  # Usar Temurin como la distribución de OpenJDK
-
-      # Paso 3: Cache Maven dependencies para acelerar la compilación
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository  # Cache de las dependencias de Maven
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      # Paso 4: Ejecutar los tests de Maven
-      - name: Run tests with Maven
-        run: mvn test -B  # La opción -B es para ejecución sin interacción
-
-      # Paso 5: Empaquetar el proyecto si los tests son exitosos
-      - name: Build with Maven
-        run: mvn package -B
-
-      # Paso 6: Verificar si el artefacto existe antes de subirlo
-      - name: Check if artifact exists
-        run: |
-          if [ -f "target/*.jar" ]; then
-            echo "Artifact found!";
-          else
-            echo "Artifact not found!";
-            exit 1;  # Si no se encuentra el artefacto, fallamos el flujo
-          fi
-
-      # Paso 7: Subir los artefactos generados
-      - name: Upload Maven artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifacts
-          path: target/*.jar  # O el path de tu artefacto
+    - uses: actions/checkout@v4
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+    - name: Build and Test with Maven
+      run: mvn -B package --file pom.xml
