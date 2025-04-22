@@ -51,7 +51,7 @@ jobs:
             exit 1;  # Si no se encuentra el artefacto, fallamos el flujo
           fi
 
-      # Paso 7: Subir los artefactos generados (si el artefacto existe)
+      # Paso 7: Subir los artefactos generados
       - name: Upload Maven artifacts
         uses: actions/upload-artifact@v3
         with:
