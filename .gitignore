@@ -1,0 +1,48 @@
+# Archivos de configuración de ayuda
+HELP.md
+
+# Compilados de Java y Gradle
+target/
+build/
+bin/
+
+# Archivos generados por Maven
+!/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Archivos de compilación de Gradle
+.gradle/
+.gradle
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Directorios y archivos generados por Spring Tools Suite (STS)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Archivos y directorios generados por IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Archivos y directorios generados por NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Archivos generados por Visual Studio Code
+.vscode/
+
+# Otros archivos generados por Gradle y el sistema
+*.log
+*.tmp
+*.swp
