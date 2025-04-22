@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adoptopenjdk'
+          distribution: 'temurin'  # Cambié de adoptopenjdk a temurin
 
       - name: Compile with Maven
         run: mvn clean compile -B
@@ -35,8 +35,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adoptopenjdk'
-
+          distribution: 'temurin' 
+          
       - name: Run unit tests
         run: mvn test -B
 
